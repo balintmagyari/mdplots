@@ -1,0 +1,13 @@
+# Claude Code related ignores
+IMPLEMENTATION_PLAN.md
+memory/
+.claude
+
+# Obsidian related ignore
+.obsidian
+
+# LaTex build related ignores
+examples/build/
+
+# Misc ignores
+.DS_Store

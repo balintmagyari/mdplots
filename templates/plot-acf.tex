@@ -1,0 +1,33 @@
+% \mdplotEteACF{plot-commands}{axis-options}
+%
+% End-to-end vector autocorrelation function C_ee(t).
+% Plotted on semilog-x axes: log time resolves both the fast
+% librational decay and the long Rouse/reptation relaxation.
+% Data contract:  t (ps)  acf (dimensionless, range 0 to 1)
+%
+% Example — single chain type:
+%   \mdplotEteACF{
+%     \addplot table[x=t, y=acf] {data/acf_PEG.dat};
+%   }{}
+%
+% Example — multiple chain lengths:
+%   \mdplotEteACF{
+%     \addplot table[x=t, y=acf] {data/acf_N10.dat}; \addlegendentry{$N=10$}
+%     \addplot table[x=t, y=acf] {data/acf_N50.dat}; \addlegendentry{$N=50$}
+%   }{legend pos=north east}
+\newcommand{\mdplotEteACF}[2]{%
+  \begin{tikzpicture}
+    \begin{axis}[
+      mdplots-base,
+      xmode=log,
+      xlabel={\(t \: [\tau]\)},
+      ylabel={$P(t)$},
+      ymin=0, ymax=1.05,
+      xmin=1e-1, xmax=1e6,
+      ytick={0, 0.2, 0.4, 0.6, 0.8, 1.0},
+      #2
+    ]
+      #1
+    \end{axis}
+  \end{tikzpicture}%
+}

@@ -1,0 +1,56 @@
+% Tol Vibrant qualitative palette (7 colors, colorblind-safe).
+% Reference: https://personal.sron.nl/~pault/
+% Names are palette-agnostic (mdC1..mdC7) so the palette can be swapped
+% without renaming usages elsewhere.
+\definecolor{mdC1}{HTML}{EE7733}  % orange
+\definecolor{mdC2}{HTML}{0077BB}  % blue
+\definecolor{mdC3}{HTML}{33BBEE}  % cyan
+\definecolor{mdC4}{HTML}{EE3377}  % magenta
+\definecolor{mdC5}{HTML}{009988}  % teal
+\definecolor{mdC6}{HTML}{CC3311}  % red
+\definecolor{mdC7}{HTML}{BBBBBB}  % grey
+
+% Default cycle list. Order follows Tol's recommendation: the first two
+% slots (orange + blue) are the canonical colorblind-safe pair for two-curve
+% comparisons. Grey sits last since it is the least prominent against white.
+\pgfplotscreateplotcyclelist{mdplots-categorical}{%
+  {color=mdC1, mark=*,         line width=0.8pt},%
+  {color=mdC2, mark=square*,   line width=0.8pt},%
+  {color=mdC3, mark=triangle*, line width=0.8pt},%
+  {color=mdC4, mark=diamond*,  line width=0.8pt},%
+  {color=mdC5, mark=pentagon*, line width=0.8pt},%
+  {color=mdC6, mark=x,         line width=0.8pt},%
+  {color=mdC7, mark=+,         line width=0.8pt},%
+}
+
+% Sequential palette for ordinal data (e.g. Rouse modes p=1,2,...; temperature
+% sweeps; concentration ramps). Sampled from the viridis colormap at 12
+% evenly-spaced points, truncated to [0.0, 0.85] so the lightest end stays
+% legible on white. Use via the mdplots-rouse-base axis style.
+\definecolor{mdSeq1}{HTML}{440154}
+\definecolor{mdSeq2}{HTML}{481B6E}
+\definecolor{mdSeq3}{HTML}{46307E}
+\definecolor{mdSeq4}{HTML}{3F4889}
+\definecolor{mdSeq5}{HTML}{365C8D}
+\definecolor{mdSeq6}{HTML}{2D708E}
+\definecolor{mdSeq7}{HTML}{25858E}
+\definecolor{mdSeq8}{HTML}{1E9A89}
+\definecolor{mdSeq9}{HTML}{25B07F}
+\definecolor{mdSeq10}{HTML}{4CC26C}
+\definecolor{mdSeq11}{HTML}{7BCE53}
+\definecolor{mdSeq12}{HTML}{B5DE2B}
+
+\pgfplotscreateplotcyclelist{mdplots-sequential}{%
+  {color=mdSeq1},%
+  {color=mdSeq2},%
+  {color=mdSeq3},%
+  {color=mdSeq4},%
+  {color=mdSeq5},%
+  {color=mdSeq6},%
+  {color=mdSeq7},%
+  {color=mdSeq8},%
+  {color=mdSeq9},%
+  {color=mdSeq10},%
+  {color=mdSeq11},%
+  {color=mdSeq12},%
+}

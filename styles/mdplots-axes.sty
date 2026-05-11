@@ -1,0 +1,48 @@
+% Base style shared by all plot types.
+% Height uses the golden ratio relative to width.
+\pgfplotsset{
+  mdplots-base/.style={
+    width=\mdplotWidth,
+    height=0.618\mdplotWidth,
+    tick align=inside,
+    tick pos=left,
+    every axis plot/.append style={only marks, mark size=1.5pt, line width=0.8pt, line join=round},
+    every mark/.append style={fill=.},
+    legend cell align=left,
+    legend style={draw=none, fill=none, font=\large},
+    cycle list name=mdplots-categorical,
+    label style={font=\large},
+    tick label style={font=\normalsize},
+    title style={font=\Large},
+    minor tick num=4,
+  },
+  % Axis scale variants — combine with mdplots-base via comma syntax
+  mdplots-linear/.style={mdplots-base},
+  mdplots-square/.style={mdplots-base, height=\mdplotWidth},
+  % Per-plot styles — apply with \addplot[mdplots-data] or \addplot[mdplots-model]
+  mdplots-data/.style={only marks, mark size=1.5pt},
+  mdplots-model/.style={only marks=false, mark=none},
+  % Move the title inside the axis at the top-left, smaller font.
+  % Useful for matrix layouts where the title labels a subplot subtly
+  % rather than sitting above the frame.
+  mdplots-inset-title/.style={
+    title style={
+      at={(axis description cs:0.05,0.95)},
+      anchor=north west,
+      font=\normalsize,
+    },
+  },
+  % Axis style for plotting a family of curves indexed by an ordinal variable
+  % (Rouse modes, temperatures, concentrations). Uses a sequential colormap
+  % instead of the categorical cycle and reverts to lines (no marks), since
+  % a viridis gradient communicates the ordering on its own.
+  mdplots-rouse-base/.style={
+    mdplots-base,
+    cycle list name=mdplots-sequential,
+    every axis plot/.append style={only marks=false, mark=none, line width=1pt},
+  },
+  % Note: xmode=log / ymode=log cannot be inside a named pgfplotsset style.
+  % pgfplots requires those keys to be set before axis initialisation
+  % completes; styles resolved via the tikz unknown-key pathway arrive too
+  % late. The template macros set xmode/ymode as direct \begin{axis} options.
+}

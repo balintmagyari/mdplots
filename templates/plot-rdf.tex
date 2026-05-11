@@ -1,0 +1,31 @@
+% \mdplotRDF{plot-commands}{axis-options}
+%
+% Radial Distribution Function g(r) on linear axes.
+% A dashed reference line at g(r)=1 (ideal gas limit) is included.
+% Data contract:  r (Ang)  g_r (dimensionless)
+%
+% Example:
+%   \mdplotRDF{
+%     \addplot table[x=r, y=g_r] {data/rdf_OO.dat}; \addlegendentry{O--O}
+%     \addplot table[x=r, y=g_r] {data/rdf_OH.dat}; \addlegendentry{O--H}
+%   }{xmax=8, legend pos=north east}
+\newcommand{\mdplotRDF}[2]{%
+  \begin{tikzpicture}
+    \begin{axis}[
+      mdplots-linear,
+      xlabel={$r$ (\AA)},
+      ylabel={$g(r)$},
+      ymin=0,
+      % dashed reference line at g(r) = 1
+      extra y ticks={1},
+      extra y tick labels={},
+      extra y tick style={
+        grid=major,
+        grid style={dashed, gray!60, thin},
+      },
+      #2
+    ]
+      #1
+    \end{axis}
+  \end{tikzpicture}%
+}

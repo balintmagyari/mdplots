@@ -1,0 +1,32 @@
+% \mdplotISF{plot-commands}{axis-options}
+%
+% Intermediate scattering function F(q,t) on semilog-x axes.
+% Semilog-x is conventional: the two-step decay (ballistic/cage +
+% alpha relaxation) is visible across many decades of time.
+% Data contract:  t (ps)  isf (dimensionless, range 0 to 1)
+%
+% Multiple q-values are typically overlaid; use the cycle list for
+% automatic color assignment and supply legend entries.
+%
+% Example:
+%   \mdplotISF{
+%     \addplot table[x=t, y=isf] {data/isf_q1.dat}; \addlegendentry{$q_1$}
+%     \addplot table[x=t, y=isf] {data/isf_q2.dat}; \addlegendentry{$q_2$}
+%     \addplot table[x=t, y=isf] {data/isf_q3.dat}; \addlegendentry{$q_3$}
+%   }{legend pos=north east, xmin=0.01}
+\newcommand{\mdplotISF}[2]{%
+  \begin{tikzpicture}
+    \begin{axis}[
+      mdplots-base,
+      xmode=log,
+      xlabel={\(t \: [\tau]\)},
+      ylabel={$F(q,t)$},
+      ymin=0, ymax=1.05,
+      xmin=1e-1, xmax=1e6,
+      ytick={0, 0.2, 0.4, 0.6, 0.8, 1.0},
+      #2
+    ]
+      #1
+    \end{axis}
+  \end{tikzpicture}%
+}

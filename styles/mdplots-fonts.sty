@@ -1,0 +1,9 @@
+% Figure width presets. Set \mdplotWidth before the plot macro,
+% or call one of the convenience commands.
+\newlength{\mdplotWidth}
+\setlength{\mdplotWidth}{8.5cm}   % default: single-column paper figure
+
+\newcommand{\mdplotSetPaperSingle}{\setlength{\mdplotWidth}{8.5cm}}
+\newcommand{\mdplotSetPaperDouble}{\setlength{\mdplotWidth}{17.0cm}}
+\newcommand{\mdplotSetThesis}{\setlength{\mdplotWidth}{14.0cm}}
+\newcommand{\mdplotSetSlides}{\setlength{\mdplotWidth}{11.0cm}}

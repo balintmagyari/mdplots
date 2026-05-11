@@ -1,0 +1,53 @@
+% \mdplotStress{plot-commands}{axis-options}
+%
+% Stress autocorrelation function C_sigma(t) on linear axes.
+% Linear axes are used because the stress ACF often has a negative
+% overshoot at short times (making log-y impossible).
+% Data contract:  t (ps)  sacf (Pa^2 or normalised)
+%
+% Example:
+%   \mdplotStress{
+%     \addplot table[x=t, y=sacf] {data/sacf.dat};
+%   }{xmax=5}
+%
+% For Green-Kubo running integrals, use \mdplotGeneric with a
+% ylabel={$\eta(t)$ (mPa\,s)} override.
+\newcommand{\mdplotStress}[2]{%
+  \begin{tikzpicture}
+    \begin{loglogaxis}[
+      mdplots-linear,
+      every axis plot/.append style={
+        mark=*, mark size=1.1pt,
+        draw opacity=0.45,
+        mark options={solid, fill opacity=1, draw opacity=1},
+      },
+      xmin=1e-2, xmax=1e6,
+      ymin=1e-4, ymax=1e2,
+      xlabel={\(t \: [\tau]\)},
+      ylabel={$G(t) \: [\epsilon/\sigma^3]$},
+      #2
+    ]
+      #1
+    \end{loglogaxis}
+  \end{tikzpicture}%
+}
+
+\newcommand{\mdplotStressZoomed}[2]{%
+  \begin{tikzpicture}
+    \begin{loglogaxis}[
+      mdplots-linear,
+      every axis plot/.append style={
+        mark=*, mark size=1.1pt,
+        draw opacity=0.45,
+        mark options={solid, fill opacity=1, draw opacity=1},
+      },
+      xmin=1e0, xmax=1e6,
+      ymin=1e-4, ymax=2e0,
+      xlabel={\(t \: [\tau]\)},
+      ylabel={$G(t) \: [\epsilon/\sigma^3]$},
+      #2
+    ]
+      #1
+    \end{loglogaxis}
+  \end{tikzpicture}%
+}

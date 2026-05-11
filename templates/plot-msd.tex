@@ -1,0 +1,16 @@
+\newcommand{\mdplotMSD}[2]{%
+  \begin{tikzpicture}
+    \begin{axis}[
+      mdplots-square,
+      xmode=log, ymode=log,
+      xlabel={\(t \: \left[\tau\right]\)},
+      ylabel={$\text{MSD} \: \left[\sigma^2\right]$},
+      legend pos=north west,
+      xmin=1e-2, xmax=2e6,
+      ymin=4e-6, ymax=1e3,
+      #2
+    ]
+      #1
+    \end{axis}
+  \end{tikzpicture}%
+}

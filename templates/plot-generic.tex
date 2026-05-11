@@ -1,0 +1,16 @@
+% \mdplotGeneric{plot-commands}{axis-options}
+%
+% Generic 2D line plot on linear axes. Use when no specialised
+% template fits. Axis labels must be supplied via axis-options.
+%
+% Example:
+%   \mdplotGeneric{
+%     \addplot table[x=t, y=E] {data/energy.dat};
+%   }{xlabel={$t$ (ps)}, ylabel={$E$ (kJ/mol)}}
+\newcommand{\mdplotGeneric}[2]{%
+  \begin{tikzpicture}
+    \begin{axis}[mdplots-linear, #2]
+      #1
+    \end{axis}
+  \end{tikzpicture}%
+}

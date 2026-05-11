@@ -1,0 +1,32 @@
+% \mdplotRouse{plot-commands}{axis-options}
+%
+% Rouse mode relaxation <\mathrm{X}_p(t) . \mathrm{X}_p(0)> / <\mathrm{X}_p^2>
+% (Doi-Edwards notation, upright X without vector arrow).
+% Plotted on semilog-x axes: log time resolves both the fast mode
+% decay and the long terminal relaxation. Linear y preserves the
+% (often non-exponential) shape for sticky / entangled systems.
+% Data contract:  lag_time (tau)  C_t (normalized, range 0 to 1)
+%
+% Example — selected modes:
+%   \mdplotRouse{
+%     \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/..._p1.txt};
+%     \addlegendentry{\(p=1\)}
+%     \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/..._p4.txt};
+%     \addlegendentry{\(p=4\)}
+%   }{legend pos=south west}
+\newcommand{\mdplotRouse}[2]{%
+  \begin{tikzpicture}
+    \begin{axis}[
+      mdplots-rouse-base,
+      xmode=log,
+      xlabel={\(t \: [\tau]\)},
+      ylabel={\(\langle \mathrm{X}_p(t) \cdot \mathrm{X}_p(0) \rangle / \langle \mathrm{X}_p^2 \rangle\)},
+      ymin=0, ymax=1.05,
+      xmin=1e-1, xmax=1e6,
+      ytick={0, 0.2, 0.4, 0.6, 0.8, 1.0},
+      #2
+    ]
+      #1
+    \end{axis}
+  \end{tikzpicture}%
+}

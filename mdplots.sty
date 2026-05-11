@@ -1,0 +1,36 @@
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage{pgfplots}
+\RequirePackage{pgfplotstable}
+\pgfplotsset{compat=1.18}
+\RequirePackage{xcolor}
+\RequirePackage{currfile}
+\usepgfplotslibrary{fillbetween}
+
+\makeatletter
+
+% Capture the directory of this file so sub-files can be found
+% regardless of where the main document lives.
+\edef\mdplots@rootdir{\currfiledir}
+
+% Call \mdplotEnableExternal in your preamble (before \begin{document})
+% to cache compiled figures as PDFs under figures/cache/.
+% Requires -shell-escape and the figures/cache/ directory to exist.
+\newcommand{\mdplotEnableExternal}{%
+  \usepgfplotslibrary{external}%
+  \tikzexternalize[prefix=figures/cache/]%
+}
+
+\input{\mdplots@rootdir styles/mdplots-colors.sty}
+\input{\mdplots@rootdir styles/mdplots-fonts.sty}
+\input{\mdplots@rootdir styles/mdplots-axes.sty}
+
+\input{\mdplots@rootdir templates/plot-generic.tex}
+\input{\mdplots@rootdir templates/plot-msd.tex}
+\input{\mdplots@rootdir templates/plot-rdf.tex}
+\input{\mdplots@rootdir templates/plot-stress.tex}
+\input{\mdplots@rootdir templates/plot-acf.tex}
+\input{\mdplots@rootdir templates/plot-isf.tex}
+\input{\mdplots@rootdir templates/plot-rouse.tex}
+
+\makeatother

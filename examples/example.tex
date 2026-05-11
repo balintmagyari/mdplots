@@ -1,0 +1,103 @@
+\documentclass[border=2pt]{standalone}
+\usepackage{amsmath}
+\usepackage{mdplots}
+
+\begin{document}
+
+\mdplotSetThesis
+
+\begin{tabular}{c}
+  \mdplotStressZoomed{
+    \addplot table[x=lag_time, y=G_GK] {data/40B_4sticky_A+B_Gt.txt};
+    \addlegendentry{Green-Kubo};
+    \addplot table[x=lag_time, y=G_FSR] {data/40B_4sticky_A+B_Gt.txt};
+    \addlegendentry{Full Stress};
+  }{title={Stress relaxation moduli for $S=4$}}\\[6pt]
+
+  \mdplotEteACF{
+    \addplot table[x=lag_time, y=C_t] {data/40B_4sticky_A+B_EtoE_acf.txt};
+    \addlegendentry{\(S=4\)};
+  }{title={End-to-end autocorrelation function}}\\[6pt]
+
+  \setlength{\mdplotWidth}{12cm}
+  \mdplotMSD{
+    \addplot table[x=time, y=g3] {data/40B_4sticky_A+B_MSD.txt};
+    \addlegendentry{$g_3$};
+    \addplot table[x=time, y=g1] {data/40B_4sticky_A+B_MSD.txt};
+    \addlegendentry{$g_1$};
+    \addplot table[x=time, y=g1_regular] {data/40B_4sticky_A+B_MSD.txt};
+    \addlegendentry{$g_1$ regular};
+    \addplot table[x=time, y=g1_sticker] {data/40B_4sticky_A+B_MSD.txt};
+    \addlegendentry{$g_1$ sticker};
+  }{title={Mean-square displacement},
+    % xticklabel={\(10^{\text{\pgfmathparse{int(round(\tick/ln(10)))}\pgfmathresult}}\)},
+    % yticklabel={\(10^{\text{\pgfmathparse{int(round(\tick/ln(10)))}\pgfmathresult}}\)}
+    }\\[6pt]
+
+  \setlength{\mdplotWidth}{5.5cm}
+  {\setlength{\tabcolsep}{3pt}
+  \begin{tabular}{cc}
+    \mdplotMSD{
+      \addplot table[x=time, y=g1] {data/40B_4sticky_A+B_MSD.txt};
+      \addlegendentry{$S=4$};
+    }{mdplots-inset-title, title={$g_1$}, xlabel={}, xticklabels={}, legend pos=south east} &
+    \mdplotMSD{
+      \addplot table[x=time, y=g3] {data/40B_4sticky_A+B_MSD.txt};
+    }{mdplots-inset-title, title={$g_3$}, xlabel={}, xticklabels={}, ylabel={}, yticklabels={}} \\[0pt]
+    \mdplotMSD{
+      \addplot table[x=time, y=g1_regular] {data/40B_4sticky_A+B_MSD.txt};
+    }{mdplots-inset-title, title={$g_1$ regular}} &
+    \mdplotMSD{
+      \addplot table[x=time, y=g1_sticker] {data/40B_4sticky_A+B_MSD.txt};
+    }{mdplots-inset-title, title={$g_1$ sticker}, ylabel={}, yticklabels={}} \\
+  \end{tabular}} \\[6pt]
+
+  \mdplotSetThesis
+  \mdplotISF{
+    \addplot table[x=lag_time, y=F_qt] {data/ISF/40B_4sticky_A+B_ISF_q0.5.txt};
+    \addlegendentry{$q = 0.500$};
+    \addplot table[x=lag_time, y=F_qt] {data/ISF/40B_4sticky_A+B_ISF_q1.txt};
+    \addlegendentry{$q = 1.000$};
+    \addplot table[x=lag_time, y=F_qt] {data/ISF/40B_4sticky_A+B_ISF_q2.418.txt};
+    \addlegendentry{$q = 2.418$};
+    \addplot table[x=lag_time, y=F_qt] {data/ISF/40B_4sticky_A+B_ISF_q4.txt};
+    \addlegendentry{$q = 4.000$};
+    \addplot table[x=lag_time, y=F_qt] {data/ISF/40B_4sticky_A+B_ISF_q6.283.txt};
+    \addlegendentry{$q = 6.283$};
+  }{
+    title={Intermediate scattering function $F(q,t)$ for $S=4$},
+    xlabel={\(t\:[\tau]\)},
+    legend pos=north east,
+  }\\[6pt]
+
+  \mdplotRouse{
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p1.txt};
+    \addlegendentry{\(p=1\)};
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p2.txt};
+    \addlegendentry{\(p=2\)};
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p3.txt};
+    \addlegendentry{\(p=3\)};
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p4.txt};
+    \addlegendentry{\(p=4\)};
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p5.txt};
+    \addlegendentry{\(p=5\)};
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p6.txt};
+    \addlegendentry{\(p=6\)};
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p7.txt};
+    \addlegendentry{\(p=7\)};
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p8.txt};
+    \addlegendentry{\(p=8\)};
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p10.txt};
+    \addlegendentry{\(p=10\)};
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p12.txt};
+    \addlegendentry{\(p=12\)};
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p16.txt};
+    \addlegendentry{\(p=16\)};
+    \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/40B_4sticky_A+B_Rouse_p20.txt};
+    \addlegendentry{\(p=20\)};
+  }{title={Rouse mode relaxation for $S=4$}, legend pos=south west, legend columns=2}\\[6pt]
+
+\end{tabular}
+
+\end{document}
+
