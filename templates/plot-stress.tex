@@ -38,13 +38,50 @@
       mdplots-linear,
       every axis plot/.append style={
         mark=*, mark size=1.1pt,
-        draw opacity=0.45,
+        % draw opacity=0.45,
         mark options={solid, fill opacity=1, draw opacity=1},
       },
       xmin=1e0, xmax=1e6,
       ymin=1e-4, ymax=2e0,
       xlabel={\(t \: [\tau]\)},
       ylabel={$G(t) \: [\epsilon/\sigma^3]$},
+      #2
+    ]
+      #1
+    \end{loglogaxis}
+  \end{tikzpicture}%
+}
+
+% \mdplotStorageandLoss{plot-commands}{axis-options}
+%
+% Storage G'(omega) and loss G''(omega) moduli on log-log axes.
+% Data contract: omega (1/tau)  Gp (epsilon/sigma^3)  Gpp (epsilon/sigma^3)
+%
+% The mdplots-rheology cycle list encodes both the color and filled/open
+% distinction: odd entries are filled marks (G'), even entries are the open
+% variant of the same shape (G''). Colors repeat in pairs so G' and G'' of
+% the same system share a color and mark shape.
+%
+% Rule: list G' before G'' for each system so the cycle list advances correctly.
+% \addplot[mdplots-storage] / \addplot[mdplots-loss] are optional semantic
+% labels — they carry no actual options.
+%
+% Example (two systems):
+%   \mdplotStorageandLoss{
+%     \addplot table[x=omega, y=Gp]    {data/sys1.dat}; \addlegendentry{Sys 1 $G'$}
+%     \addplot table[x=omega, y=Gprime]{data/sys1.dat}; \addlegendentry{Sys 1 $G''$}
+%     \addplot table[x=omega, y=Gp]    {data/sys2.dat}; \addlegendentry{Sys 2 $G'$}
+%     \addplot table[x=omega, y=Gprime]{data/sys2.dat}; \addlegendentry{Sys 2 $G''$}
+%   }{}
+\newcommand{\mdplotStorageandLoss}[2]{%
+  \begin{tikzpicture}
+    \begin{loglogaxis}[
+      mdplots-linear,
+      cycle list name=mdplots-rheology,
+      every axis plot/.append style={mark size=1.5pt},
+      legend pos=north west,
+      xlabel={\(\omega \: [1/\tau]\)},
+      ylabel={$G' / G'' \: [\epsilon/\sigma^3]$},
       #2
     ]
       #1

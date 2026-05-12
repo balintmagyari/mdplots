@@ -2,10 +2,10 @@
 % Reference: https://personal.sron.nl/~pault/
 % Names are palette-agnostic (mdC1..mdC7) so the palette can be swapped
 % without renaming usages elsewhere.
-\definecolor{mdC1}{HTML}{EE7733}  % orange
-\definecolor{mdC2}{HTML}{0077BB}  % blue
-\definecolor{mdC3}{HTML}{33BBEE}  % cyan
-\definecolor{mdC4}{HTML}{EE3377}  % magenta
+\definecolor{mdC1}{HTML}{4A93F7}  % deep blue
+\definecolor{mdC2}{HTML}{A81919}  % red
+\definecolor{mdC3}{HTML}{1B11D6}  % dark blue
+\definecolor{mdC4}{HTML}{E66C86}  % yellow
 \definecolor{mdC5}{HTML}{009988}  % teal
 \definecolor{mdC6}{HTML}{CC3311}  % red
 \definecolor{mdC7}{HTML}{BBBBBB}  % grey
@@ -39,6 +39,24 @@
 \definecolor{mdSeq10}{HTML}{4CC26C}
 \definecolor{mdSeq11}{HTML}{7BCE53}
 \definecolor{mdSeq12}{HTML}{B5DE2B}
+
+% Paired cycle list for rheology (storage G' + loss G'' moduli).
+% Consecutive entries share a color and mark shape: odd entries use filled
+% marks (G'), even entries use the open variant of the same shape (G'').
+% Open marks (mark=o, square, ...) are stroked-only in pgf, so they inherit
+% the cycle color via the draw path directly — no fill override needed.
+\pgfplotscreateplotcyclelist{mdplots-rheology}{%
+  {color=mdC1, mark=*,         line width=0.8pt},%  G'  sys 1
+  {color=mdC1, mark=o,         line width=0.8pt},%  G'' sys 1
+  {color=mdC2, mark=square*,   line width=0.8pt},%  G'  sys 2
+  {color=mdC2, mark=square,    line width=0.8pt},%  G'' sys 2
+  {color=mdC3, mark=triangle*, line width=0.8pt},%  G'  sys 3
+  {color=mdC3, mark=triangle,  line width=0.8pt},%  G'' sys 3
+  {color=mdC4, mark=diamond*,  line width=0.8pt},%  G'  sys 4
+  {color=mdC4, mark=diamond,   line width=0.8pt},%  G'' sys 4
+  {color=mdC5, mark=pentagon*, line width=0.8pt},%  G'  sys 5
+  {color=mdC5, mark=pentagon,  line width=0.8pt},%  G'' sys 5
+}
 
 \pgfplotscreateplotcyclelist{mdplots-sequential}{%
   {color=mdSeq1},%

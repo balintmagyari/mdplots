@@ -7,17 +7,18 @@
 % (often non-exponential) shape for sticky / entangled systems.
 % Data contract:  lag_time (tau)  C_t (normalized, range 0 to 1)
 %
-% Example — selected modes:
+% Example — pass mdplots-sequential=<N> to get a viridis gradient sized
+% to the number of curves you actually plot:
 %   \mdplotRouse{
 %     \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/..._p1.txt};
 %     \addlegendentry{\(p=1\)}
 %     \addplot table[x=lag_time, y=C_t] {data/Rouse_modes/..._p4.txt};
 %     \addlegendentry{\(p=4\)}
-%   }{legend pos=south west}
+%   }{mdplots-sequential=2, legend pos=south west}
 \newcommand{\mdplotRouse}[2]{%
   \begin{tikzpicture}
     \begin{axis}[
-      mdplots-rouse-base,
+      mdplots-base,
       xmode=log,
       xlabel={\(t \: [\tau]\)},
       ylabel={\(\langle \mathrm{X}_p(t) \cdot \mathrm{X}_p(0) \rangle / \langle \mathrm{X}_p^2 \rangle\)},
