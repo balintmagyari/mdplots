@@ -16,7 +16,7 @@
 %     \addlegendentry{\(p=4\)}
 %   }{mdplots-sequential=2, legend pos=south west}
 \newcommand{\mdplotRouse}[2]{%
-  \begin{tikzpicture}
+  \begin{tikzpicture}[trim axis left, trim axis right]
     \begin{axis}[
       mdplots-base,
       xmode=log,

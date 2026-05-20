@@ -13,7 +13,7 @@
 % For Green-Kubo running integrals, use \mdplotGeneric with a
 % ylabel={$\eta(t)$ (mPa\,s)} override.
 \newcommand{\mdplotStress}[2]{%
-  \begin{tikzpicture}
+  \begin{tikzpicture}[trim axis left, trim axis right]
     \begin{loglogaxis}[
       mdplots-linear,
       every axis plot/.append style={
@@ -33,7 +33,7 @@
 }
 
 \newcommand{\mdplotStressZoomed}[2]{%
-  \begin{tikzpicture}
+  \begin{tikzpicture}[trim axis left, trim axis right]
     \begin{loglogaxis}[
       mdplots-linear,
       every axis plot/.append style={
@@ -74,7 +74,7 @@
 %     \addplot table[x=omega, y=Gprime]{data/sys2.dat}; \addlegendentry{Sys 2 $G''$}
 %   }{}
 \newcommand{\mdplotStorageandLoss}[2]{%
-  \begin{tikzpicture}
+  \begin{tikzpicture}[trim axis left, trim axis right]
     \begin{loglogaxis}[
       mdplots-linear,
       cycle list name=mdplots-rheology,

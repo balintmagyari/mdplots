@@ -15,7 +15,7 @@
 %     \addplot table[x=t, y=isf] {data/isf_q3.dat}; \addlegendentry{$q_3$}
 %   }{legend pos=north east, xmin=0.01}
 \newcommand{\mdplotISF}[2]{%
-  \begin{tikzpicture}
+  \begin{tikzpicture}[trim axis left, trim axis right]
     \begin{axis}[
       mdplots-base,
       xmode=log,

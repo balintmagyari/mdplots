@@ -8,7 +8,7 @@
 %     \addplot table[x=t, y=E] {data/energy.dat};
 %   }{xlabel={$t$ (ps)}, ylabel={$E$ (kJ/mol)}}
 \newcommand{\mdplotGeneric}[2]{%
-  \begin{tikzpicture}
+  \begin{tikzpicture}[trim axis left, trim axis right]
     \begin{axis}[mdplots-linear, #2]
       #1
     \end{axis}

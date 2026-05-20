@@ -10,7 +10,7 @@
 %     \addplot table[x=r, y=g_r] {data/rdf_OH.dat}; \addlegendentry{O--H}
 %   }{xmax=8, legend pos=north east}
 \newcommand{\mdplotRDF}[2]{%
-  \begin{tikzpicture}
+  \begin{tikzpicture}[trim axis left, trim axis right]
     \begin{axis}[
       mdplots-linear,
       xlabel={$r$ (\AA)},
